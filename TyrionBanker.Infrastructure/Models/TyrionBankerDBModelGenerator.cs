@@ -15,9 +15,9 @@ using System.Collections.Generic;
 
 namespace TyrionBanker.Infrastructure.Models
 {
-	/// <summary>
-	/// A class which represents the UserInfo table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the UserInfo table.
+    /// </summary>
 	[Table("UserInfo")]
 	public partial class UserInfo
 	{
@@ -26,11 +26,12 @@ namespace TyrionBanker.Infrastructure.Models
 		public virtual string Name { get; set; }
 		public virtual string Password { get; set; }
 		public virtual IEnumerable<UserRole> UserRole { get; set; }
+		public virtual IEnumerable<UserAccount> UserAccount { get; set; }
 	}
 
-	/// <summary>
-	/// A class which represents the BankAccountTypes table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the BankAccountTypes table.
+    /// </summary>
 	[Table("BankAccountTypes")]
 	public partial class BankAccountType
 	{
@@ -40,23 +41,24 @@ namespace TyrionBanker.Infrastructure.Models
 		public virtual IEnumerable<BankAccount> BankAccount { get; set; }
 	}
 
-	/// <summary>
-	/// A class which represents the BankAccount table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the BankAccount table.
+    /// </summary>
 	[Table("BankAccount")]
 	public partial class BankAccount
 	{
 		[Key]
 		public virtual int BankAccountId { get; set; }
 		public virtual string BankAccountNo { get; set; }
-		public virtual decimal Balanca { get; set; }
+		public virtual decimal Balance { get; set; }
 		public virtual int BankAccountTypeId { get; set; }
 		public virtual BankAccountType BankAccountType { get; set; }
+		public virtual IEnumerable<UserAccount> UserAccount { get; set; }
 	}
 
-	/// <summary>
-	/// A class which represents the Roles table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the Roles table.
+    /// </summary>
 	[Table("Roles")]
 	public partial class Role
 	{
@@ -67,9 +69,9 @@ namespace TyrionBanker.Infrastructure.Models
 		public virtual IEnumerable<UserRole> UserRole { get; set; }
 	}
 
-	/// <summary>
-	/// A class which represents the Privilages table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the Privilages table.
+    /// </summary>
 	[Table("Privilages")]
 	public partial class Privilage
 	{
@@ -79,9 +81,9 @@ namespace TyrionBanker.Infrastructure.Models
 		public virtual IEnumerable<RolePrivilage> RolePrivilage { get; set; }
 	}
 
-	/// <summary>
-	/// A class which represents the RolePrivilage table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the RolePrivilage table.
+    /// </summary>
 	[Table("RolePrivilage")]
 	public partial class RolePrivilage
 	{
@@ -93,9 +95,9 @@ namespace TyrionBanker.Infrastructure.Models
 		public virtual Privilage Privilage { get; set; }
 	}
 
-	/// <summary>
-	/// A class which represents the UserRole table.
-	/// </summary>
+    /// <summary>
+    /// A class which represents the UserRole table.
+    /// </summary>
 	[Table("UserRole")]
 	public partial class UserRole
 	{
@@ -105,6 +107,20 @@ namespace TyrionBanker.Infrastructure.Models
 		public virtual int RoleId { get; set; }
 		public virtual UserInfo UserInfo { get; set; }
 		public virtual Role Role { get; set; }
+	}
+
+    /// <summary>
+    /// A class which represents the UserAccount table.
+    /// </summary>
+	[Table("UserAccount")]
+	public partial class UserAccount
+	{
+		[Key]
+		public virtual int UserAccountId { get; set; }
+		public virtual int UserId { get; set; }
+		public virtual int BankAccountId { get; set; }
+		public virtual UserInfo UserInfo { get; set; }
+		public virtual BankAccount BankAccount { get; set; }
 	}
 
 }

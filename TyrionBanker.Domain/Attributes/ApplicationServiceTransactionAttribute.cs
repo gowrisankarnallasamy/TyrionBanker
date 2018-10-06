@@ -38,7 +38,7 @@ namespace TyrionBanker.Domain.Attributes
                 {
                     if (classAttr != null || methodAttr != null)
                     {
-                        using (var tran = new TransactionScope(option, new TransactionOptions { IsolationLevel = IsolationLevel.ReadUncommitted, Timeout = TimeSpan.FromSeconds(timeout) }))
+                        using (var tran = new TransactionScope(option, new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted, Timeout = TimeSpan.FromSeconds(timeout) }))
                         {
                             result = getNext()(input, getNext);
                             DomainUnityContainer.Resolve<ITyrionBankerDbConnection>("TyrionBankerDB").Close();

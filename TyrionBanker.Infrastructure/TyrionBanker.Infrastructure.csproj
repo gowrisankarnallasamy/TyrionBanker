@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AbstractRepository.cs" />
+    <Compile Include="Repository\BankerRepository.cs" />
     <Compile Include="Repository\UserManagementRepository.cs" />
     <Compile Include="SimpleCRUD.cs" />
   </ItemGroup>

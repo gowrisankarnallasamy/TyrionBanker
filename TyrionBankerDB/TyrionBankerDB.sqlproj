@@ -67,5 +67,6 @@
     <Build Include="Roles.sql" />
     <Build Include="UserInfo.sql" />
     <Build Include="UserRole.sql" />
+    <Build Include="UserAccount.sql" />
   </ItemGroup>
 </Project>

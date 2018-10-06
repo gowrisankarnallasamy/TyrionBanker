@@ -15,6 +15,13 @@ namespace TyrionBanker.Infrastructure.Test
         [ClassInitialize()]
         public static void ClassInit(TestContext context)
         {
+            typeof(InfrastructureUnityContainer)
+                .GetField("UnityContainer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                .SetValue(null, null);
+            typeof(DomainUnityContainer)
+                .GetField("UnityContainer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                .SetValue(null, null);
+
             var container = new UnityContainer();
             DomainUnityContainer.BuildUp(container);
             InfrastructureUnityContainer.BuildUp(container);
