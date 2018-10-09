@@ -18,6 +18,8 @@ using TyrionBanker.ApiWeb.Providers;
 using TyrionBanker.ApiWeb.Results;
 using TyrionBanker.ApiWeb.Attributes;
 using Unity;
+using TyrionBanker.Domain.ApplicationService;
+using TyrionBanker.Domain.Models;
 
 namespace TyrionBanker.ApiWeb.Controllers
 {
@@ -72,6 +74,13 @@ namespace TyrionBanker.ApiWeb.Controllers
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
+        }
+
+        [HttpGet]
+        public IList<string> GetRoles()
+        {
+            var roles = UnityContainer.Resolve<IUserManagementApplicationService>().GetRoles(User.Identity.GetUserId<int>());
+            return roles;
         }
 
         // POST api/Account/Logout

@@ -4,6 +4,9 @@ using TyrionBanker.Domain.Repository;
 using Unity.Attributes;
 using Unity;
 using TyrionBanker.Domain;
+using TyrionBanker.Domain.Models;
+using TyrionBanker.Core;
+using System.Linq;
 
 namespace TyrionBanker.Infrastructure.Test
 {
@@ -37,11 +40,54 @@ namespace TyrionBanker.Infrastructure.Test
         }
 
         [TestMethod]
+        public void TestGetUserInos()
+        {
+            var userInfos = UserRepo.GetUserInfo();
+            Assert.AreNotEqual(userInfos, null);
+            Assert.IsTrue(userInfos.Any());
+        }
+
+        [TestMethod]
         public void TestGetRoles()
+        {
+            var roles = UserRepo.GetRoles();
+            Assert.AreNotEqual(roles, null);
+            Assert.IsTrue(roles.Any());
+        }
+
+        [TestMethod]
+        public void TestGetRole()
         {
             var roles = UserRepo.GetRoles(1);
             Assert.AreNotEqual(roles, null);
             Assert.IsTrue(roles.Count > 0);
+
+            roles = UserRepo.GetRoles("accholder1");
+            Assert.AreNotEqual(roles, null);
+            Assert.IsTrue(roles.Count > 0);
+        }
+
+        [TestMethod]
+        public void TestSaveRole()
+        {
+            var roleDomain = new RoleDomain { Name = "testrole1" };
+            UserRepo.SaveRole(roleDomain);
+            var insertedRoleDomain = UserRepo.GetRole(roleDomain.Name);
+            var insertedRoleDomain2 = UserRepo.GetRole(insertedRoleDomain.RoleId);
+            UserRepo.DeleteRole(insertedRoleDomain);
+
+            Assert.IsNotNull(insertedRoleDomain);
+            Assert.IsNotNull(insertedRoleDomain2);
+
+            roleDomain = new RoleDomain { Name = "testrole1" };
+            UserRepo.SaveRole(roleDomain);
+            insertedRoleDomain = UserRepo.GetRole(roleDomain.Name);
+            UserRepo.DeleteRole(insertedRoleDomain.RoleId);
+
+            roleDomain = new RoleDomain { Name = "testrole1" };
+            UserRepo.SaveRole(roleDomain);
+            insertedRoleDomain = UserRepo.GetRole(roleDomain.Name);
+            UserRepo.DeleteRole(insertedRoleDomain.Name);
         }
 
         [TestMethod]
@@ -50,6 +96,15 @@ namespace TyrionBanker.Infrastructure.Test
             var roles = UserRepo.GetRoleFunctions(1);
             Assert.AreNotEqual(roles, null);
             Assert.IsTrue(roles.Count > 0);
+        }
+
+        [TestMethod]
+        public void TestSaveUserInfo()
+        {
+            var userInfoDomain = new UserInfoDomain { UserId = 0, Name = "testuser", Password = PassworHelper.HashPassword("testuser"), UserRoles = null };
+            UserRepo.SaveUserInfo(userInfoDomain);
+            var newUserInfo = UserRepo.GetUserInfo(userInfoDomain.Name);
+            UserRepo.DeleteUserInfo(newUserInfo.Name);
         }
     }
 }

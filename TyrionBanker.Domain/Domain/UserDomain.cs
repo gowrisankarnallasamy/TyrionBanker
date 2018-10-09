@@ -14,19 +14,11 @@ namespace TyrionBanker.Domain.Domain
         [Dependency]
         public IUserManagementRepository repository { get; set; }
 
-        public IList<FunctionServiceModel> GetRoleFunctions(int userId)
-        {
-            return repository.GetRoleFunctions(userId);
-        }
+        public IList<FunctionServiceModel> GetRoleFunctions(int userId) => repository.GetRoleFunctions(userId);
 
-        public IList<string> GetRoles(int userId)
-        {
-            return repository.GetRoles(userId);
-        }
+        public IList<string> GetRoles(int userId) => repository.GetRoles(userId);
+        public IList<string> GetRoles(string userName) => repository.GetRoles(userName);
 
-        public UserInfoDomain GetUserInfo(string userName)
-        {
-            return repository.GetUserInfo(userName);
-        }
+        public UserInfoDomain GetUserInfo(string userName) => repository.GetUserInfo(userName);
     }
 }

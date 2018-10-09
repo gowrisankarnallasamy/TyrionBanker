@@ -15,6 +15,7 @@ namespace TyrionBanker.Domain.ApplicationService
     {
         UserInfoDomain GetUserInfo(string userName);
         IList<string> GetRoles(int userId);
+        IList<string> GetRoles(string userName);
         IList<FunctionServiceModel> GetRoleFunctions(int userId);
     }
 }

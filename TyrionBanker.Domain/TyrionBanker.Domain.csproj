@@ -97,6 +97,7 @@
     <Compile Include="Domain\UserDomain.cs" />
     <Compile Include="Models\BankAccountDomainModel.cs" />
     <Compile Include="Models\FunctionServiceModel.cs" />
+    <Compile Include="Models\RoleDomain.cs" />
     <Compile Include="Models\UserInfoDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IBankerRepository.cs" />

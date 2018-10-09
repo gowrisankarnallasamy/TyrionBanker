@@ -81,6 +81,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreUnityContainer.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="ITyrionBankerBase.cs" />
     <Compile Include="Log\LogEntry.cs" />
     <Compile Include="Log\TyrionBankerLogger.cs" />
     <Compile Include="Log\TyrionBankerLoggerEx.cs" />

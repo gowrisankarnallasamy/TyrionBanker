@@ -34,6 +34,10 @@ namespace TyrionBanker.Domain.Test
             var roles = UserAppService.GetRoles(1);
             Assert.AreNotEqual(roles, null);
             Assert.IsTrue(roles.Count > 0);
+
+            roles = UserAppService.GetRoles("accholder1");
+            Assert.AreNotEqual(roles, null);
+            Assert.IsTrue(roles.Count > 0);
         }
 
         [TestMethod]

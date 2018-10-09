@@ -14,19 +14,9 @@ namespace TyrionBanker.Domain.ApplicationService
         [Dependency]
         internal IUserDomain UserDomain { get; set; }
 
-        public IList<FunctionServiceModel> GetRoleFunctions(int userId)
-        {
-            return UserDomain.GetRoleFunctions(userId);
-        }
-
-        public IList<string> GetRoles(int userId)
-        {
-            return UserDomain.GetRoles(userId);
-        }
-
-        public UserInfoDomain GetUserInfo(string userName)
-        {
-            return UserDomain.GetUserInfo(userName);
-        }
+        public IList<FunctionServiceModel> GetRoleFunctions(int userId) => UserDomain.GetRoleFunctions(userId);
+        public IList<string> GetRoles(int userId) => UserDomain.GetRoles(userId);
+        public IList<string> GetRoles(string userName) => UserDomain.GetRoles(userName);
+        public UserInfoDomain GetUserInfo(string userName) => UserDomain.GetUserInfo(userName);
     }
 }

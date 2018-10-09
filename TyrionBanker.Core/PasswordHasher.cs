@@ -10,12 +10,12 @@ namespace TyrionBanker.Core
 {
     public class PassworHelper
     {
-        public const int SaltByteSize = 24;
-        public const int HashByteSize = 20; // to match the size of the PBKDF2-HMAC-SHA-1 hash 
-        public const int Pbkdf2Iterations = 10000;
-        public const int IterationIndex = 0;
-        public const int SaltIndex = 1;
-        public const int Pbkdf2Index = 2;
+        private const int SaltByteSize = 24;
+        private const int HashByteSize = 20; // to match the size of the PBKDF2-HMAC-SHA-1 hash 
+        private const int Pbkdf2Iterations = 10000;
+        private const int IterationIndex = 0;
+        private const int SaltIndex = 1;
+        private const int Pbkdf2Index = 2;
 
         public static string HashPassword(string password)
         {
